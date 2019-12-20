@@ -30,6 +30,9 @@ class Loss(nn.modules.loss._Loss):
             elif loss_type == "charb":
                 module = import_module('loss.charbonnier')
                 loss_function = getattr(module, 'Charbonnier')()
+            elif loss_type == "fair":
+                module = import_module('loss.fair')
+                loss_function = getattr(module, 'Fair')()
             elif loss_type.find('VGG') >= 0:
                 module = import_module('loss.vgg')
                 loss_function = getattr(module, 'VGG')(
