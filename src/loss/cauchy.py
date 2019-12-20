@@ -10,7 +10,7 @@ class Cauchy(nn.Module):
     def forward(self, X, Y):
         r = torch.add(X, -Y)
         ra = torch.abs(r)
-        error = 0.5*(self.c **2) * torch.log(1 + (ra/self.c)**2)
+        error = 0.5 * (self.c **2) * torch.log(1 + (ra/self.c)**2)
         
         loss = torch.sum(error)
         return loss 
