@@ -27,6 +27,9 @@ class Loss(nn.modules.loss._Loss):
                 loss_function = nn.L1Loss()
             elif loss_type == "huber":
                 loss_function = nn.SmoothL1Loss()
+            elif loss_type == "charb":
+                module = import_module('loss.charbonnier')
+                loss_function = getattr(module, 'Charbonnier')()
             elif loss_type.find('VGG') >= 0:
                 module = import_module('loss.vgg')
                 loss_function = getattr(module, 'VGG')(
