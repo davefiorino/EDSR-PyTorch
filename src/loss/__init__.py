@@ -36,6 +36,9 @@ class Loss(nn.modules.loss._Loss):
             elif loss_type == "cauchy":
                 module = import_module('loss.cauchy')
                 loss_function = getattr(module, 'Cauchy')()
+            elif loss_type == "WMSE":
+                module = import_module('loss.WMSE')
+                loss_function = getattr(module, 'WMSE')()
             elif loss_type.find('VGG') >= 0:
                 module = import_module('loss.vgg')
                 loss_function = getattr(module, 'VGG')(
