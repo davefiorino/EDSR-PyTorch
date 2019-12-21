@@ -10,7 +10,7 @@ class Fair(nn.Module):
     def forward(self, X, Y):
         r = torch.add(X, -Y)
         ra = torch.abs(r)
-        error = (self.c **2) * (ra/self.c - torch.log(1 + ra/self.c))
+        error = (self.c **2) * (ra/self.c - torch.log(1 + ra/self.c)).detach()
         
         loss = torch.sum(error)
         return loss 
