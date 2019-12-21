@@ -114,11 +114,8 @@ def sobel(input: torch.Tensor) -> torch.Tensor:
 
 # WMSE: MSE weighted by sobel grandient map
 
-def mse_loss(input, target):
-    return torch.sum((input - target) ** 2)
-
 def weighted_mse_loss(input, target, weight):
-    return torch.sum(weight * (input - target) ** 2)
+    return torch.sum(weight * torch.add(input, -target) ** 2)
     
 
 class WMSE(nn.Module):
