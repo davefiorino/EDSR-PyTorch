@@ -1,5 +1,6 @@
 import torch
 import torch.nn as nn
+import numpy as np
 
 
 class GDL(nn.Module):
@@ -12,10 +13,18 @@ class GDL(nn.Module):
         
         print(Y_true.shape)
         print(Y_pred.shape)
-        t1 = torch.pow(torch.abs(Y_true[:, :, :, :] - Y_true[:, :, ::-1, :]) -
-                   torch.abs(Y_pred[:, :, :, :] - Y_pred[:, :, ::-1, :]), self.alpha)
-        t2 = torch.pow(torch.abs(Y_true[:, :, :, :-1] - Y_true[:, :, :, :]) -
-                   torch.abs(Y_pred[:, :, :, ::-1] - Y_pred[:, :, :, :]), self.alpha)
+
+        Y_trueR = torch.from_numpy(np.flip(Y_true.numpy(), 2))
+        Y_predR = torch.from_numpy(np.flip(Y_pred.numpy(), 2))
+
+        t1 = torch.pow(torch.abs(Y_true - Y_trueR) -
+                   torch.abs(Y_pred - Y_predR), self.alpha)
+
+        Y_trueR = torch.from_numpy(np.flip(Y_true.numpy(), 3))
+        Y_predR = torch.from_numpy(np.flip(Y_pred.numpy(), 3))
+
+        t2 = torch.pow(torch.abs(Y_trueR - Y_true) -
+                   torch.abs(Y_predE - Y_pred), self.alpha)
         
         print(t1.shape)
         print(t2.shape)
