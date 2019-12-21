@@ -12,10 +12,10 @@ class GDL(nn.Module):
         
         print(Y_true.shape)
         print(Y_pred.shape)
-        t1 = torch.pow(torch.abs(Y_true[:, :, 1:, :] - Y_true[:, :, :-1, :]) -
-                   torch.abs(Y_pred[:, :, 1:, :] - Y_pred[:, :, :-1, :]), self.alpha)
-        t2 = torch.pow(torch.abs(Y_true[:, :, :, :-1] - Y_true[:, :, :, 1:]) -
-                   torch.abs(Y_pred[:, :, :, :-1] - Y_pred[:, :, :, 1:]), self.alpha)
+        t1 = torch.pow(torch.abs(Y_true[:, :, :, :] - Y_true[:, :, ::-1, :]) -
+                   torch.abs(Y_pred[:, :, :, :] - Y_pred[:, :, ::-1, :]), self.alpha)
+        t2 = torch.pow(torch.abs(Y_true[:, :, :, :-1] - Y_true[:, :, :, :]) -
+                   torch.abs(Y_pred[:, :, :, ::-1] - Y_pred[:, :, :, :]), self.alpha)
         
         print(t1.shape)
         print(t2.shape)
