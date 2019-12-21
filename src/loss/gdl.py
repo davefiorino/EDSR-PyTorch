@@ -13,7 +13,7 @@ class GDL(nn.Module):
 
         t1 = torch.pow(torch.abs(Y_true[1:, :, :] - Y_true[:-1, :, :]) -
                    torch.abs(Y_pred[1:, :, :] - Y_pred[:-1, :, :]), self.alpha)
-        t2 = torch.pow(K.abs(Y_true[:, :-1, :] - Y_true[:, 1:, :]) -
+        t2 = torch.pow(torch.abs(Y_true[:, :-1, :] - Y_true[:, 1:, :]) -
                    torch.abs(Y_pred[:, :-1, :] - Y_pred[:, 1:, :]), self.alpha)
 
         error = torch.add(t1, t2)
