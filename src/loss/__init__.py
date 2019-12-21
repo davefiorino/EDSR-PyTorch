@@ -40,7 +40,7 @@ class Loss(nn.modules.loss._Loss):
                 module = import_module('loss.WMSE')
                 loss_function = getattr(module, 'WMSE')()
             elif loss_type == "GDL":
-                module = import_module('loss.GDL')
+                module = import_module('loss.gdl')
                 loss_function = getattr(module, 'GDL')()
             elif loss_type.find('VGG') >= 0:
                 module = import_module('loss.vgg')
