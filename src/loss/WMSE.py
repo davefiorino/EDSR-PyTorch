@@ -127,7 +127,7 @@ class WMSE(nn.Module):
         super(WMSE, self).__init__()
 
     def forward(self, X, Y):
-        grad = spatial_gradient(Y)
+        grad = sobel(Y)
         
         loss = weighted_mse_loss(X, Y, grad)
         return loss 
