@@ -14,14 +14,14 @@ class GDL(nn.Module):
         print(Y_true.shape)
         print(Y_pred.shape)
 
-        Y_trueR = torch.from_numpy(np.flip(Y_true.detach().cpu().numpy(), 2)).cuda()
-        Y_predR = torch.from_numpy(np.flip(Y_pred.detach().cpu().numpy(), 2)).cuda()
+        Y_trueR = torch.from_numpy(np.flip(Y_true.detach().cpu().numpy(), 2).copy()).cuda()
+        Y_predR = torch.from_numpy(np.flip(Y_pred.detach().cpu().numpy(), 2).copy()).cuda()
 
         t1 = torch.pow(torch.abs(Y_true - Y_trueR) -
                    torch.abs(Y_pred - Y_predR), self.alpha)
 
-        Y_trueR = torch.from_numpy(np.flip(Y_true.detach().cpu().numpy(), 3)).cuda()
-        Y_predR = torch.from_numpy(np.flip(Y_pred.detach().cpu().numpy(), 3)).cuda()
+        Y_trueR = torch.from_numpy(np.flip(Y_true.detach().cpu().numpy(), 3).copy()).cuda()
+        Y_predR = torch.from_numpy(np.flip(Y_pred.detach().cpu().numpy(), 3).copy()).cuda()
 
         t2 = torch.pow(torch.abs(Y_trueR - Y_true) -
                    torch.abs(Y_predE - Y_pred), self.alpha)
